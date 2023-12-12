@@ -1,4 +1,28 @@
+"""
+This module provides the 'EDA' class, which offers methods for performing various
+Exploratory Data Analysis (EDA) tasks on cricket player data. These tasks include
+renaming columns to more descriptive names and removing certain columns from a DataFrame.
+
+The class is specifically designed to handle DataFrames containing cricket statistics,
+with separate methods tailored for players like Virat Kohli and Jasprit Bumrah.
+
+Classes:
+    EDA: Offers methods for exploratory data analysis on cricket data.
+"""
+
+import pandas as pd
+import numpy as np
+
+
 class EDA:
+    """
+    The EDA class provides functionalities for performing exploratory data analysis on cricket data.
+
+    It includes methods for renaming DataFrame columns to more descriptive names based on predefined mappings,
+    and for removing specific columns from a DataFrame. The class is designed to handle DataFrames with cricket
+    statistics, offering tailored methods for different players.
+    """
+
     def __init__(self) -> None:
         pass
 

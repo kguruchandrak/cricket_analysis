@@ -1,9 +1,32 @@
+"""
+This module provides the 'Inference' class, which contains methods for visualizing cricket player performance data 
+and for training and evaluating machine learning models to predict future performance. The class includes methods 
+to plot performance metrics such as batting average and strike rate, as well as a method to train a RandomForestRegressor 
+model for predictive analysis.
+
+Classes:
+    Inference: Offers methods for visualizing cricket data and training and evaluating predictive models.
+"""
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+from math import sqrt
 
 
 class Inference:
+    """
+    The Inference class provides functionalities for visualizing cricket player statistics and for training
+    and evaluating machine learning models to predict future performance.
+
+    It includes methods for creating plots to visualize various performance metrics, such as batting averages
+    against different teams, and for training and evaluating RandomForestRegressor models for predictive analysis
+    of cricket data.
+    """
+
     def __init__(self) -> None:
         pass
 
@@ -92,3 +115,47 @@ class Inference:
         # Show the plot
         plt.tight_layout()  # Adjust the padding between and around subplots
         plt.show()  # Display the plot
+
+    def train_and_evaluate_model(
+        self, df, feature_cols, target_col, test_size=0.2, random_state=42
+    ):
+        """
+        Train a RandomForestRegressor model and evaluate it using RMSE.
+
+        Parameters:
+        - df (pd.DataFrame): The input DataFrame containing the features and target variable.
+        - feature_cols (list): List of column names to be used as features.
+        - target_col (str): Name of the column to be used as target variable.
+        - test_size (float): Proportion of the dataset to include in the test split.
+        - random_state (int): Controls the shuffling applied to the data before applying the split.
+
+        Returns:
+        - float: The Root Mean Squared Error of the model on the test set.
+        - RandomForestRegressor: The trained RandomForest model.
+        """
+
+        # Split the features and target variable from the DataFrame
+        X = df[feature_cols]
+        y = df[target_col]
+
+        # Split the data into training and testing sets
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=test_size, random_state=random_state
+        )
+
+        # Initialize the RandomForestRegressor model
+        model = RandomForestRegressor(n_estimators=100, random_state=random_state)
+
+        # Train the model on the training set
+        model.fit(X_train, y_train)
+
+        # Make predictions on the test set
+        y_pred = model.predict(X_test)
+
+        # Calculate the RMSE from the actual and predicted values
+        rmse = sqrt(mean_squared_error(y_test, y_pred))
+
+        print(f"Root Mean Squared Error: {rmse}")
+
+        # Return the RMSE and the trained model
+        return rmse, model

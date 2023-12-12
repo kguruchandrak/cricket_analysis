@@ -1,10 +1,41 @@
+"""
+This module provides a class 'DataSummary' for fetching and processing cricket player statistics. 
+The class contains methods for retrieving player stats from the ESPN Cricinfo API, creating pandas 
+DataFrames from JSON data, removing unwanted columns from DataFrames, and creating global variables 
+for DataFrames with specified prefixes.
+
+Classes:
+    DataSummary: Offers methods to fetch and process cricket player statistics.
+
+Methods:
+    fetch_player_stats: Fetches a player's stats summary from the ESPN Cricinfo API.
+    create_dataframes_from_json: Creates a dictionary of DataFrames from JSON data.
+    remove_columns: Removes specified columns from a DataFrame.
+    create_prefixed_global_dataframes: Creates global variables for DataFrames with prefixed names.
+"""
+
 import requests
 import json
 import pandas as pd
 
 
 class DataSummary:
+    """
+    The DataSummary class provides functionalities for fetching and processing cricket player statistics.
+
+    It facilitates interaction with the ESPN Cricinfo API to retrieve statistical data of cricket players.
+    The class also includes methods to manipulate and organize this data into structured formats such as
+    pandas DataFrames, making it easier to perform data analysis tasks.
+
+    Methods include fetching player statistics, creating DataFrames from JSON data, removing unnecessary
+    DataFrame columns, and creating global DataFrames with specific naming conventions.
+    """
+
     def __init__(self) -> None:
+        """
+        Initializes the DataSummary class. This class is designed to handle various tasks related to data retrieval
+        and processing of cricket player statistics.
+        """
         pass
 
     def fetch_player_stats(self, player_id, record_class_id, stat_type):
