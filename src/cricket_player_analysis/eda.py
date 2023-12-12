@@ -7,7 +7,7 @@ The class is specifically designed to handle DataFrames containing cricket stati
 with separate methods tailored for players like Virat Kohli and Jasprit Bumrah.
 
 Classes:
-    EDA: Offers methods for exploratory data analysis on cricket data.
+    EDA: Offers methods for exploratory data analysis on cricket dataset.
 """
 
 import pandas as pd
